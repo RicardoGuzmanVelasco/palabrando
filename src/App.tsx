@@ -21,7 +21,7 @@ const words = {
     brandLabel: 'Palabrando, inicio',
     notebook: 'Cuaderno',
     addWord: 'Añadir palabra',
-    term: 'Palabra o expresión',
+    term: 'Palabra',
     language: 'Idioma',
     spanish: 'Español',
     english: 'Inglés',
@@ -29,7 +29,7 @@ const words = {
     saving: 'Guardando…',
     savedLocal: 'se guardó en este dispositivo.',
     savedAccount: 'se guardó.',
-    emptyTerm: 'Escribe una palabra o expresión para guardarla.',
+    emptyTerm: 'Escribe algo para guardar.',
     saveError: 'No se pudo guardar. Tu palabra sigue aquí; prueba otra vez.',
     loadError: 'No se pudieron cargar las palabras.',
     recent: 'Cartas',
@@ -51,7 +51,7 @@ const words = {
     brandLabel: 'Palabrando, home',
     notebook: 'Notebook',
     addWord: 'Add word',
-    term: 'Word or expression',
+    term: 'Word',
     language: 'Language',
     spanish: 'Spanish',
     english: 'English',
@@ -59,7 +59,7 @@ const words = {
     saving: 'Saving…',
     savedLocal: 'was saved on this device.',
     savedAccount: 'was saved.',
-    emptyTerm: 'Enter a word or expression to save it.',
+    emptyTerm: 'Enter something to save.',
     saveError: 'Could not save. Your word is still here; try again.',
     loadError: 'Could not load words.',
     recent: 'Cards',
@@ -357,9 +357,9 @@ function App() {
             </div>
 
             <form className="capture-form" onSubmit={saveWord}>
-              <label htmlFor="word-term">{copy.term}</label>
               <input
                 id="word-term"
+                aria-label={copy.term}
                 autoComplete="off"
                 value={term}
                 onChange={(event) => {

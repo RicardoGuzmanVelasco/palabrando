@@ -17,7 +17,7 @@
   --rule: #cfe3e8;
   --page: #f9fdfe;
   --serif: Georgia, 'Times New Roman', serif;
-  --handwritten: 'Marker Felt', Noteworthy, 'Bradley Hand', 'Comic Sans MS', cursive;
+  --handwritten: 'Indie Flower', 'Marker Felt', Noteworthy, 'Bradley Hand', cursive;
 }
 
 * { box-sizing: border-box; }
@@ -118,18 +118,6 @@ button:focus-visible, input:focus-visible, select:focus-visible, a:focus-visible
   letter-spacing: -0.035em;
 }
 .capture-form { margin-top: 29px; }
-.capture-form > label {
-  display: block;
-  margin-bottom: 3px;
-  color: var(--quiet);
-  font-size: 12px;
-  font-weight: 600;
-}
-.capture-form > label:has(+ input:focus-visible) {
-  color: var(--water-deep);
-  text-decoration: underline wavy;
-  text-underline-offset: 3px;
-}
 .capture-form > input {
   display: block;
   width: 100%;

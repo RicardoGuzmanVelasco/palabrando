@@ -28,7 +28,7 @@ La experiencia es **mobile-first**. Escritorio es una adaptación secundaria.
 - Home y superficies genéricas se construyen con estas cuatro familias, sus papeles claros y sus tintas legibles. No se incorporan familias verdes, pizarra o sepia.
 - No se guarda un estado manual de completitud: se calcula por los campos presentes.
 - El idioma de la interfaz y los idiomas en que el usuario quiere mejorar su escritura son ajustes separados.
-- Se pidió sustituir la handwritten del cuaderno por Indie Flower (Google Fonts); pendiente verificar cobertura de caracteres/licencia e incorporarla después del trabajo actual.
+- La captura usa Indie Flower desde Google Fonts, con fallback cursivo; la licencia SIL Open Font License 1.1 está confirmada.
 - Al crear una cuenta se elige idioma de interfaz: español o inglés.
 - El reto conserva el último idioma elegido; en una cuenta nueva se inicia con el idioma de interfaz. Se puede cambiar antes de consultar cartas y esa selección filtra la baraja por idioma.
 - Los retos serán un placeholder sencillo en el POC. No cerraremos aún reglas de selección, dados ni gamificación.
@@ -142,7 +142,7 @@ Antes de implementar, verificar la documentación y el changelog vigentes de Sup
 - **Captura inicial:** permite anotar y consultar palabras recientes; con sesión autenticada las guarda en Supabase y, sin configuración, conserva el respaldo local del navegador.
 - **Fase 2 — Supabase y cuenta:** proyecto remoto `palabrando` creado en `eu-central-1`; migraciones de perfil, cartas, catálogo de etiquetas y retos aplicadas; `.env.local` apunta al proyecto y está ignorado por Git. RLS está activado en las siete tablas y el asesor de seguridad no reporta avisos. El dominio de producción está en Redirect URLs y se configuró como Site URL predeterminado. Pendiente comprobar aislamiento entre dos cuentas.
 - **Fase 3 — captura y glosario (en curso):** captura y lectura persistentes, cartas verticales y edición/borrado de uso y ejemplo implementados. Pendientes catálogo y asignación de etiquetas, estados pendiente/lista y configurar idiomas de escritura/preselección.
-- **Fase 6 — publicación (en curso):** primera versión publicada en Render Static Site: `https://palabrando-t3rt.onrender.com`. Compilación de producción correcta y Site URL predeterminado de Supabase Auth configurado para producción. Pendiente completar la verificación manual de Auth y el aislamiento entre dos cuentas.
+- **Fase 6 — publicación (en curso):** primera versión publicada en Render Static Site: `https://palabrando-t3rt.onrender.com`. Compilación de producción correcta y Site URL predeterminado de Supabase Auth configurado para producción. El usuario confirma que el flujo de acceso por correo es suficiente por ahora; queda pendiente la comprobación de aislamiento entre dos cuentas.
 
 ## 8. Secuencia de implementación
 
