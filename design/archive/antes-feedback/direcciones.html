@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Palabrando — tres direcciones visuales</title>
+    <style>
+      :root { color-scheme: light; font-family: Inter, ui-sans-serif, system-ui, sans-serif; color: #24251f; background: #ece9e1; font-synthesis: none; text-rendering: optimizeLegibility; }
+      * { box-sizing: border-box; }
+      body { margin: 0; }
+      header { max-width: 1500px; margin: auto; padding: 42px 32px 28px; }
+      .kicker { color: #68705d; font-size: 11px; font-weight: 750; letter-spacing: .15em; text-transform: uppercase; }
+      h1 { max-width: 800px; margin: 12px 0; font: 500 clamp(36px, 5vw, 64px)/.98 Georgia, serif; letter-spacing: -.055em; }
+      header p { max-width: 640px; color: #62635d; line-height: 1.55; }
+      .boards { display: grid; grid-template-columns: repeat(3, minmax(300px, 1fr)); gap: 16px; max-width: 1500px; margin: auto; padding: 0 32px 48px; align-items: start; }
+      .board { --paper:#f5f0e5; --ink:#292b26; --muted:#717167; --accent:#a84432; --line:#dad4c5; --soft:#e9e3d7; --serif:Georgia,serif; --sans:Inter,ui-sans-serif,system-ui,sans-serif; --display:var(--serif); background: var(--paper); border: 1px solid var(--line); padding: 18px; box-shadow: 0 5px 22px #24251f0b; }
+      .field { --paper:#f1f1e8; --ink:#29332c; --muted:#737a6d; --accent:#54704e; --line:#d2d6c8; --soft:#e4e9dc; --serif:Georgia,serif; --sans:Inter,ui-sans-serif,system-ui,sans-serif; --display:var(--serif); }
+      .collector { --paper:#f6f4ef; --ink:#171b2a; --muted:#6b6e7a; --accent:#3655c7; --line:#d9dbe2; --soft:#e8ebf5; --serif:Georgia,serif; --sans:Inter,ui-sans-serif,system-ui,sans-serif; --display:var(--sans); }
+      .board-head { display:flex; align-items:flex-start; justify-content:space-between; gap:12px; padding-bottom:16px; border-bottom:1px solid var(--line); }
+      .board h2 { margin: 0 0 5px; color:var(--ink); font: 500 25px/1.05 var(--display); letter-spacing:-.035em; }
+      .board-head p { margin:0; color:var(--muted); font-size:11px; line-height:1.4; }
+      .mark { flex:none; width:34px; height:34px; display:grid; place-items:center; border:1px solid var(--accent); border-radius:50%; color:var(--accent); font:italic 18px var(--serif); }
+      .palette { display:flex; gap:5px; margin:14px 0; }
+      .swatch { width:23px; height:23px; border-radius:50%; border:1px solid #0001; }
+      .scene-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; }
+      .scene { min-width:0; }
+      .scene-name { margin:0 0 5px; color:var(--muted); font-size:9px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; }
+      .phone { min-height:185px; padding:10px 9px; overflow:hidden; border:1px solid var(--line); border-radius:11px; background:var(--paper); color:var(--ink); box-shadow:0 4px 11px #25251b0a; font:9px/1.35 var(--sans); }
+      .top { display:flex; justify-content:space-between; align-items:center; margin-bottom:13px; color:var(--muted); font-size:8px; }
+      .brand { color:var(--ink); font:italic 12px var(--serif); }
+      .phone h3 { margin:0 0 5px; color:var(--ink); font:500 19px/.98 var(--display); letter-spacing:-.04em; }
+      .phone .sub { margin:0 0 10px; color:var(--muted); font-size:8px; }
+      .input { display:flex; justify-content:space-between; align-items:center; min-height:27px; margin:8px 0; padding:5px 7px; border:1px solid var(--line); background:#fff8; color:var(--muted); }
+      .button { display:block; width:100%; margin-top:7px; padding:6px; border:0; background:var(--accent); color:#fff; text-align:center; font-size:8px; font-weight:700; }
+      .pill { display:inline-block; margin:3px 2px 0 0; padding:3px 5px; border:1px solid var(--line); border-radius:20px; color:var(--ink); font-size:7px; }
+      .word-card { margin:8px 0; padding:9px 8px; border:1px solid var(--line); background:var(--soft); }
+      .word-card strong { display:block; margin-bottom:3px; font:500 17px/1 var(--display); }
+      .word-card small { color:var(--muted); font-size:7px; }
+      .row { display:flex; justify-content:space-between; gap:5px; padding:6px 0; border-bottom:1px solid var(--line); }
+      .row b { font-weight:650; }
+      .empty { display:grid; min-height:110px; align-content:center; justify-items:center; text-align:center; color:var(--muted); }
+      .empty span { margin-bottom:6px; color:var(--accent); font:italic 23px var(--serif); }
+      .stamp { color:var(--accent); font-size:7px; font-weight:800; letter-spacing:.1em; text-transform:uppercase; }
+      .field .phone { border-radius:4px; }
+      .field .word-card { border-left:3px solid var(--accent); }
+      .field .phone h3 { font-family:var(--serif); }
+      .field .top { font-size:7px; letter-spacing:.04em; text-transform:uppercase; }
+      .collector .phone { border-radius:3px; }
+      .collector .word-card { border:2px solid var(--ink); background:var(--paper); box-shadow:3px 3px 0 var(--accent); }
+      .collector .phone h3 { font-weight:750; letter-spacing:-.065em; }
+      .collector .brand { font:800 10px var(--sans); letter-spacing:-.04em; }
+      .collector .button { border-radius:2px; }
+      .note { margin:14px 0 0; padding-top:12px; border-top:1px solid var(--line); color:var(--muted); font-size:10px; line-height:1.5; }
+      .rec { margin-top:8px; color:var(--accent); font-size:9px; font-weight:750; letter-spacing:.05em; text-transform:uppercase; }
+      @media (max-width: 1050px) { .boards { grid-template-columns:1fr; max-width:740px; } .board { padding:22px; } .scene-grid { grid-template-columns:repeat(3,minmax(0,1fr)); } }
+      @media (max-width: 560px) { header { padding:30px 18px 22px; } .boards { padding:0 12px 32px; } .board { padding:15px; } .scene-grid { grid-template-columns:repeat(2,minmax(0,1fr)); gap:9px; } .phone { min-height:175px; } }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="kicker">Palabrando · exploración de producto</div>
+      <h1>Tres maneras de volver a una palabra.</h1>
+      <p>La misma secuencia móvil en cada dirección: capturar, revisar una carta, elegir idioma para el reto, sacar una palabra y recuperarse cuando todavía no hay cartas listas.</p>
+    </header>
+    <main class="boards">
+      <article class="board notebook">
+        <div class="board-head"><div><h2>01 · Cuaderno editorial</h2><p>Íntimo, táctil y sereno. El apunte conserva algo de su origen.</p></div><div class="mark">a</div></div>
+        <div class="palette"><i class="swatch" style="background:#f5f0e5"></i><i class="swatch" style="background:#292b26"></i><i class="swatch" style="background:#a84432"></i><i class="swatch" style="background:#78806b"></i></div>
+        <div class="scene-grid">
+          <section class="scene"><p class="scene-name">01 · Captura</p><div class="phone"><div class="top"><span class="brand">Palabrando</span><span>ES ⌄</span></div><h3>Una palabra<br>para guardar.</h3><p class="sub">El cuaderno cabe en el bolsillo.</p><div class="input">sobremesa <span>✎</span></div><div class="button">Guardar palabra&nbsp; ↗</div><p class="sub" style="margin-top:9px">✓ Anotada. Sigue cuando quieras.</p></div></section>
+          <section class="scene"><p class="scene-name">02 · Bandeja</p><div class="phone"><div class="top"><span class="brand">Palabrando</span><span>12 palabras</span></div><h3>Por completar</h3><p class="sub">Tus apuntes esperan aquí.</p><div class="row"><b>sobremesa</b><span>ES · 12 oct</span></div><div class="row"><b>limerencia</b><span>ES · 10 oct</span></div><div class="row"><b>apricity</b><span>EN · 8 oct</span></div><span class="pill">3 por completar</span></div></section>
+          <section class="scene"><p class="scene-name">03 · Revisar carta</p><div class="phone"><div class="top"><span>← Bandeja</span><span class="stamp">Borrador</span></div><div class="word-card"><strong>sobremesa</strong><small>español · añadida por ti</small></div><div class="row"><b>Uso</b><span>charla después de comer</span></div><div class="row"><b>Ejemplo</b><span>La sobremesa duró horas.</span></div><div><span class="pill">sustantivo</span><span class="pill">femenino</span></div><div class="button">Aceptar selección&nbsp; ✓</div></div></section>
+          <section class="scene"><p class="scene-name">04 · Idioma del reto</p><div class="phone"><div class="top"><span class="brand">Palabrando</span><span>Reto · 1</span></div><h3>¿En qué idioma<br>quieres escribir?</h3><p class="sub">Recordaremos tu última elección.</p><div class="row"><b>Español</b><span>✓</span></div><div class="row"><span>English</span><span>›</span></div><div class="button">Ver cartas&nbsp; →</div></div></section>
+          <section class="scene"><p class="scene-name">05 · Carta sacada</p><div class="phone"><div class="top"><span>Baraja · Español</span><span>↻</span></div><div class="word-card" style="min-height:95px"><small>PALABRA PARA HOY</small><strong style="font-size:24px;margin:13px 0">sobremesa</strong><small>Quédate un rato en ese momento de calma compartida.</small></div><p class="sub">Úsala en algo que ya estés escribiendo.</p><div class="button">La incorporé&nbsp; ✓</div></div></section>
+          <section class="scene"><p class="scene-name">06 · Sin cartas</p><div class="phone"><div class="top"><span>Reto · English</span><span>⌄</span></div><div class="empty"><span>∅</span><b>Aún no hay cartas listas<br>en inglés.</b><p class="sub">Completa una o prueba otro idioma.</p></div><div class="button">Cambiar idioma</div><p class="sub" style="text-align:center">Ver pendientes en inglés</p></div></section>
+        </div>
+        <p class="note">Serif literaria para palabra y titulares; sans muy legible para controles. Papel cálido sin textura pesada. El rojo arcilla marca guardar, aceptar y el siguiente gesto. En escritorio, la bandeja gana una columna lateral y el detalle mantiene el ancho de una carta.</p>
+      </article>
+
+      <article class="board field">
+        <div class="board-head"><div><h2>02 · Diario de campo</h2><p>Observación y taxonomía amable. Cada palabra es una pequeña especie.</p></div><div class="mark">✳</div></div>
+        <div class="palette"><i class="swatch" style="background:#f1f1e8"></i><i class="swatch" style="background:#29332c"></i><i class="swatch" style="background:#54704e"></i><i class="swatch" style="background:#c17a52"></i></div>
+        <div class="scene-grid">
+          <section class="scene"><p class="scene-name">01 · Captura</p><div class="phone"><div class="top"><span class="brand">PALABRANDO / 01</span><span>ES ⌄</span></div><span class="stamp">Nueva observación</span><h3 style="margin-top:8px">¿Qué palabra<br>encontraste?</h3><div class="input">sobremesa <span>＋</span></div><div class="button">Añadir al cuaderno</div><p class="sub" style="margin-top:9px">Registrada · 14:32</p></div></section>
+          <section class="scene"><p class="scene-name">02 · Bandeja</p><div class="phone"><div class="top"><span class="brand">ÍNDICE DE CAMPO</span><span>12 total</span></div><h3 style="font-size:16px">Por completar <span style="color:var(--accent)">03</span></h3><p class="sub">Ordenadas por fecha de hallazgo.</p><div class="row"><b>01 &nbsp;sobremesa</b><span>ES</span></div><div class="row"><b>02 &nbsp;limerencia</b><span>ES</span></div><div class="row"><b>03 &nbsp;apricity</b><span>EN</span></div><span class="pill">registradas hace poco</span></div></section>
+          <section class="scene"><p class="scene-name">03 · Revisar carta</p><div class="phone"><div class="top"><span>Ficha 01 / 12</span><span>○ sin revisar</span></div><div class="word-card"><small>ESPECIE · SUSTANTIVO FEMENINO</small><strong>sobremesa</strong><small>castellano · 12 oct 2026</small></div><span class="stamp">Propuesta · revisar</span><div class="row"><b>Uso</b><span>conversación tras la comida</span></div><div class="row"><b>Ejemplo</b><span>Alargamos la sobremesa.</span></div><div class="button">Confirmar ficha</div></div></section>
+          <section class="scene"><p class="scene-name">04 · Idioma del reto</p><div class="phone"><div class="top"><span>CUADERNO DE PRÁCTICA</span><span>02</span></div><h3 style="font-size:17px">Elige tu terreno<br>de escritura.</h3><p class="sub">Se conserva para la próxima vez.</p><div class="row"><b>● Español</b><span>8 listas</span></div><div class="row"><span>○ English</span><span>2 listas</span></div><div class="button">Explorar cartas</div></div></section>
+          <section class="scene"><p class="scene-name">05 · Carta sacada</p><div class="phone"><div class="top"><span>MUESTRA 04 / ES</span><span>⤨</span></div><div class="word-card" style="min-height:95px"><small>REGISTRO · 12 OCT 2026</small><strong style="font-size:24px;margin:12px 0">sobremesa</strong><small>El tiempo compartido después de comer, sin prisa por levantarse.</small></div><div><span class="pill">sust. fem.</span><span class="pill">costumbre</span></div><div class="button">Usada en mi escritura</div></div></section>
+          <section class="scene"><p class="scene-name">06 · Sin cartas</p><div class="phone"><div class="top"><span>PRÁCTICA · EN</span><span>⌄</span></div><div class="empty"><span>⌕</span><b>No encontramos fichas<br>listas en English.</b><p class="sub">Hay 2 apuntes sin completar.</p></div><div class="button">Ver esos apuntes</div><p class="sub" style="text-align:center">O elegir otro idioma</p></div></section>
+        </div>
+        <p class="note">Sans limpia para navegación; serif sobria para los términos. Códigos, fechas y clasificación forman una taxonomía legible. Verde hoja para estados listos, terracota para atención. En escritorio, navegación por índice de campo y fichas amplias con número de registro; no convertir la taxonomía en una tabla densa.</p>
+      </article>
+
+      <article class="board collector">
+        <div class="board-head"><div><h2>03 · Archivo de autor</h2><p>Una colección gráfica contemporánea. La palabra es la pieza protagonista.</p></div><div class="mark">P</div></div>
+        <div class="palette"><i class="swatch" style="background:#f6f4ef"></i><i class="swatch" style="background:#171b2a"></i><i class="swatch" style="background:#3655c7"></i><i class="swatch" style="background:#d46b45"></i></div>
+        <div class="scene-grid">
+          <section class="scene"><p class="scene-name">01 · Captura</p><div class="phone"><div class="top"><span class="brand">PALABRANDO®</span><span>ES / 01</span></div><span class="stamp">Nueva pieza</span><h3 style="margin-top:8px">No dejes que<br>se escape.</h3><div class="input">sobremesa <span>＋</span></div><div class="button">Guardar en colección&nbsp; ↗</div><p class="sub" style="margin-top:9px">Guardada en tu colección.</p></div></section>
+          <section class="scene"><p class="scene-name">02 · Bandeja</p><div class="phone"><div class="top"><span class="brand">COLECCIÓN</span><span>12 piezas</span></div><h3 style="font:700 16px var(--sans)">Falta completar <span style="color:var(--accent)">03</span></h3><p class="sub">Continúa donde lo dejaste.</p><div class="word-card"><strong>sobremesa</strong><small>ES &nbsp; · &nbsp; APUNTE #12</small></div><div class="row"><b>limerencia</b><span>ES · #11</span></div><div class="row"><b>apricity</b><span>EN · #10</span></div></div></section>
+          <section class="scene"><p class="scene-name">03 · Revisar carta</p><div class="phone"><div class="top"><span>PIEZA 12 / 12</span><span class="stamp">EN REVISIÓN</span></div><div class="word-card"><small>FRENTE · ES</small><strong style="font-size:21px">sobremesa</strong></div><div class="row"><b>Uso</b><span>charla que sigue a la comida</span></div><div class="row"><b>Ejemplo</b><span>La sobremesa se alargó.</span></div><div><span class="pill">nombre</span><span class="pill">femenino</span></div><div class="button">Añadir estos datos</div></div></section>
+          <section class="scene"><p class="scene-name">04 · Idioma del reto</p><div class="phone"><div class="top"><span class="brand">MESA DE ESCRITURA</span><span>01</span></div><h3 style="font:750 18px var(--sans)">Elige una<br>colección.</h3><p class="sub">El idioma se queda como lo dejes.</p><div class="row"><b>Español</b><span>08 cartas</span></div><div class="row"><span>English</span><span>02 cartas</span></div><div class="button">Entrar en la baraja&nbsp; →</div></div></section>
+          <section class="scene"><p class="scene-name">05 · Carta sacada</p><div class="phone"><div class="top"><span>DRAW 01 / ES</span><span>↻</span></div><div class="word-card" style="min-height:95px"><small>PAUSA · PALABRA #12</small><strong style="font-size:25px;margin:15px 0">sobremesa.</strong><small>Escribe una escena que no termina cuando acaba la comida.</small></div><p class="sub">Llévala a un texto que ya estés escribiendo.</p><div class="button">Hecho · volver luego</div></div></section>
+          <section class="scene"><p class="scene-name">06 · Sin cartas</p><div class="phone"><div class="top"><span>DRAW / EN</span><span>⌄</span></div><div class="empty"><span>02</span><b>Aún no puedes<br>sacar una carta.</b><p class="sub">Completa las 2 palabras pendientes en inglés.</p></div><div class="button">Abrir pendientes</div><p class="sub" style="text-align:center">Cambiar colección</p></div></section>
+        </div>
+        <p class="note">Sans geométrica con mucho contraste para titulares; serif reservada para ejemplos o citas. Bordes firmes y una sombra corta hacen que cada carta destaque sin efectos de casino. Azul para acciones primarias, naranja solo para novedad. En escritorio, vista editorial tipo mesa de trabajo con una carta destacada y colección al margen.</p>
+      </article>
+    </main>
+  </body>
+</html>

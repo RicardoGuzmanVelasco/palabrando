@@ -1,0 +1,558 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Seis rutas de lettering y ligaduras para la identidad de Palabrando.">
+  <title>Palabrando · seis rutas de lettering</title>
+  <style>
+    :root {
+      --paper: #f4f0e8;
+      --ink: #20241f;
+      --muted: #62665f;
+      --line: rgba(32, 36, 31, .16);
+      --white: #fffdf8;
+      --max: 1240px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--paper);
+      font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      text-rendering: optimizeLegibility;
+    }
+    button, a { font: inherit; }
+    a { color: inherit; }
+    svg { display: block; overflow: visible; }
+    .skip {
+      position: fixed;
+      z-index: 20;
+      top: 12px;
+      left: 12px;
+      transform: translateY(-160%);
+      padding: 10px 14px;
+      border-radius: 99px;
+      background: var(--ink);
+      color: white;
+    }
+    .skip:focus { transform: none; }
+    .masthead {
+      padding: 24px clamp(20px, 5vw, 72px) 0;
+      border-bottom: 1px solid var(--line);
+      background: rgba(244, 240, 232, .96);
+    }
+    .navline, .hero, .index, .closing {
+      width: min(var(--max), 100%);
+      margin-inline: auto;
+    }
+    .navline {
+      display: flex;
+      justify-content: space-between;
+      gap: 24px;
+      align-items: center;
+      padding-bottom: 20px;
+    }
+    .project-name {
+      font-family: Georgia, serif;
+      font-size: 18px;
+      letter-spacing: -.02em;
+    }
+    .edition {
+      color: var(--muted);
+      font-size: 12px;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.45fr) minmax(280px, .55fr);
+      gap: clamp(32px, 8vw, 110px);
+      align-items: end;
+      padding: clamp(72px, 12vw, 150px) 0 clamp(48px, 8vw, 92px);
+    }
+    .eyebrow, .route-no {
+      display: block;
+      margin-bottom: 18px;
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+    }
+    h1 {
+      max-width: 850px;
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(52px, 8vw, 112px);
+      font-weight: 400;
+      line-height: .91;
+      letter-spacing: -.07em;
+    }
+    .hero-note {
+      max-width: 390px;
+      margin: 0 0 4px;
+      color: #4e534c;
+      font-family: Georgia, serif;
+      font-size: clamp(17px, 1.7vw, 22px);
+      line-height: 1.5;
+    }
+    .index {
+      display: grid;
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+      gap: 1px;
+      border: 1px solid var(--line);
+      border-bottom: 0;
+      background: var(--line);
+    }
+    .index a {
+      min-height: 92px;
+      padding: 17px;
+      background: var(--paper);
+      text-decoration: none;
+      transition: background .18s ease, color .18s ease;
+    }
+    .index a:hover, .index a:focus-visible { background: var(--ink); color: var(--paper); outline: 0; }
+    .index small { display: block; margin-bottom: 14px; opacity: .6; font-size: 10px; letter-spacing: .14em; }
+    .index strong { display: block; font-family: Georgia, serif; font-size: 17px; font-weight: 400; }
+
+    .route {
+      --accent: #536450;
+      --accent2: #d88768;
+      --surface: #eef0e5;
+      --r-ink: #263129;
+      position: relative;
+      padding: clamp(74px, 10vw, 138px) clamp(20px, 5vw, 72px);
+      color: var(--r-ink);
+      background: var(--surface);
+      scroll-margin-top: 20px;
+      overflow: hidden;
+    }
+    .route + .route { border-top: 1px solid rgba(30, 30, 28, .12); }
+    .route-inner { width: min(var(--max), 100%); margin-inline: auto; }
+    .route-head {
+      display: grid;
+      grid-template-columns: minmax(220px, .7fr) minmax(0, 1.3fr);
+      gap: clamp(42px, 9vw, 132px);
+      align-items: center;
+      margin-bottom: clamp(60px, 8vw, 100px);
+    }
+    .symbol-stage {
+      display: grid;
+      place-items: center;
+      min-height: 330px;
+      border-radius: 48% 52% 44% 56% / 53% 39% 61% 47%;
+      background: rgba(255, 255, 255, .52);
+    }
+    .symbol-stage svg { width: min(210px, 62%); height: auto; }
+    .route-title { margin: 0 0 22px; font-family: Georgia, serif; font-size: clamp(47px, 6vw, 84px); font-weight: 400; line-height: .96; letter-spacing: -.055em; }
+    .route-kicker { margin: 0 0 26px; color: var(--accent); font-size: 13px; font-weight: 760; letter-spacing: .08em; text-transform: uppercase; }
+    .concept { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; max-width: 720px; }
+    .concept p { margin: 0; font-family: Georgia, serif; font-size: clamp(17px, 1.6vw, 21px); line-height: 1.55; }
+    .specimens {
+      display: grid;
+      grid-template-columns: minmax(0, 1.35fr) minmax(265px, .65fr);
+      gap: clamp(24px, 4vw, 48px);
+      align-items: stretch;
+    }
+    .specimen-main, .specimen-side {
+      position: relative;
+      min-width: 0;
+      border: 1px solid rgba(30, 30, 28, .14);
+      background: rgba(255, 253, 248, .72);
+    }
+    .specimen-main { min-height: 510px; padding: clamp(24px, 4vw, 48px); }
+    .specimen-side { display: flex; flex-direction: column; }
+    .label {
+      display: block;
+      color: color-mix(in srgb, var(--r-ink), transparent 35%);
+      font-size: 10px;
+      font-weight: 760;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+    }
+    .wordmark-stage {
+      display: grid;
+      min-height: 245px;
+      place-items: center start;
+      border-bottom: 1px solid rgba(30, 30, 28, .12);
+    }
+    .wordmark { width: 100%; max-width: 650px; color: var(--r-ink); }
+    .lockup-row {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 24px;
+      align-items: end;
+      padding-top: 34px;
+    }
+    .lockup { display: flex; gap: 14px; align-items: center; min-width: 0; }
+    .lockup .mark { flex: 0 0 52px; width: 52px; height: 52px; }
+    .lockup-word { font-family: Georgia, serif; font-size: clamp(24px, 3vw, 40px); letter-spacing: -.045em; white-space: nowrap; }
+    .compact { display: grid; gap: 9px; justify-items: center; }
+    .compact-box {
+      display: grid;
+      width: 76px;
+      height: 76px;
+      place-items: center;
+      border-radius: 22px;
+      background: var(--accent);
+      color: var(--surface);
+    }
+    .compact-box svg { width: 53px; height: 53px; }
+    .mini-panel { padding: 25px 26px; border-bottom: 1px solid rgba(30, 30, 28, .12); }
+    .mini-panel:last-child { border-bottom: 0; }
+    .palette { display: grid; grid-template-columns: repeat(4, 1fr); gap: 7px; margin-top: 18px; }
+    .swatch { height: 62px; padding: 8px; display: flex; align-items: end; border: 1px solid rgba(0, 0, 0, .08); font-size: 9px; font-weight: 700; letter-spacing: .03em; }
+    .small-test { display: flex; align-items: center; gap: 11px; margin-top: 18px; }
+    .small-test svg { flex: 0 0 24px; width: 24px; height: 24px; }
+    .small-name { font-family: Georgia, serif; font-size: 15px; letter-spacing: -.02em; }
+    .mini-copy { margin: 12px 0 0; color: color-mix(in srgb, var(--r-ink), transparent 18%); font-size: 13px; line-height: 1.5; }
+    .mono-strip { display: flex; align-items: center; gap: 18px; margin-top: 17px; }
+    .mono-chip {
+      display: grid;
+      width: 56px;
+      height: 56px;
+      place-items: center;
+      background: #171917;
+      color: white;
+      border-radius: 50%;
+    }
+    .mono-chip.invert { background: transparent; color: #171917; border: 1px solid #171917; }
+    .mono-chip svg { width: 38px; height: 38px; }
+    .depth .symbol-stage, .depth .specimen-main { box-shadow: 0 22px 50px rgba(55, 45, 34, .09), 0 3px 0 rgba(255, 255, 255, .42) inset; }
+    .depth .compact-box { box-shadow: 0 7px 0 color-mix(in srgb, var(--accent), black 20%), 0 10px 20px rgba(40, 30, 24, .16); transform: translateY(-4px); }
+
+    /* 01 — Solapa */
+    .solapa { --accent:#536450; --accent2:#c86f50; --surface:#ebe9d9; --r-ink:#273129; }
+    .solapa .wordmark-text { font-family: Georgia, serif; font-size: 94px; letter-spacing: -7px; }
+    .solapa .lockup-word { font-family: Georgia, serif; }
+    .solapa .symbol-stage { background: #f9f5e8; }
+    /* 02 — Lazo */
+    .lazo { --accent:#7a3e54; --accent2:#e0a69a; --surface:#f3ded9; --r-ink:#4f2b38; }
+    .lazo .wordmark-text { font-family: "Palatino Linotype", Palatino, Georgia, serif; font-size: 89px; font-style: italic; letter-spacing: -6px; }
+    .lazo .lockup-word { font-family: "Palatino Linotype", Palatino, Georgia, serif; font-style: italic; }
+    .lazo .symbol-stage { background: rgba(255,250,244,.76); border-radius: 50%; }
+    /* 03 — Bisagra */
+    .bisagra { --accent:#1e5d64; --accent2:#d8a644; --surface:#e4eee9; --r-ink:#173f43; }
+    .bisagra .wordmark-text { font-family: "Trebuchet MS", sans-serif; font-size: 83px; font-weight: 700; letter-spacing: -6px; }
+    .bisagra .lockup-word { font-family: "Trebuchet MS", sans-serif; font-weight: 700; }
+    .bisagra .symbol-stage { border-radius: 38px; background: #f7f4e9; }
+    /* 04 — Renglón */
+    .renglon { --accent:#9b4f38; --accent2:#8aa191; --surface:#efe2d1; --r-ink:#5b3025; }
+    .renglon .wordmark-text { font-family: Georgia, serif; font-size: 84px; letter-spacing: -5px; }
+    .renglon .lockup-word { font-family: Georgia, serif; }
+    .renglon .symbol-stage { background: transparent; border: 1px solid rgba(91,48,37,.18); border-radius: 8px; }
+    /* 05 — Nudo */
+    .nudo { --accent:#5e4b76; --accent2:#d28b66; --surface:#e9e1ed; --r-ink:#392f46; }
+    .nudo .wordmark-text { font-family: Georgia, serif; font-size: 86px; font-weight: 700; letter-spacing: -6px; }
+    .nudo .lockup-word { font-family: Georgia, serif; font-weight: 700; }
+    .nudo .symbol-stage { background: #f8f2ec; border-radius: 38% 62% 54% 46% / 48% 43% 57% 52%; }
+    /* 06 — Vuelta */
+    .vuelta { --accent:#2f5266; --accent2:#c06b46; --surface:#e8e7df; --r-ink:#273b46; }
+    .vuelta .wordmark-text { font-family: "Trebuchet MS", sans-serif; font-size: 79px; font-weight: 600; letter-spacing: -5px; }
+    .vuelta .lockup-word { font-family: "Trebuchet MS", sans-serif; font-weight: 600; }
+    .vuelta .symbol-stage { background: rgba(255,255,255,.52); border-radius: 999px 999px 44px 44px; }
+    .vuelta .compact-box { box-shadow: 0 5px 0 rgba(39, 59, 70, .22), 0 9px 18px rgba(39, 59, 70, .12); transform: translateY(-2px); }
+
+    .closing { padding: clamp(72px, 10vw, 130px) 0; }
+    .closing h2 { max-width: 820px; margin: 0 0 26px; font-family: Georgia, serif; font-size: clamp(38px, 5vw, 68px); font-weight: 400; letter-spacing: -.05em; line-height: 1; }
+    .closing p { max-width: 680px; margin: 0; color: var(--muted); font-size: 16px; line-height: 1.65; }
+    .back-top { display: inline-block; margin-top: 28px; font-size: 13px; font-weight: 700; }
+
+    @media (max-width: 900px) {
+      .hero, .route-head, .specimens { grid-template-columns: 1fr; }
+      .hero { align-items: start; }
+      .index { grid-template-columns: repeat(3, 1fr); }
+      .symbol-stage { min-height: 250px; }
+      .route-head { gap: 36px; }
+      .concept { max-width: none; }
+    }
+    @media (max-width: 560px) {
+      .navline { align-items: flex-start; }
+      .edition { max-width: 150px; text-align: right; }
+      .index { grid-template-columns: repeat(2, 1fr); }
+      .concept { grid-template-columns: 1fr; gap: 16px; }
+      .specimen-main { min-height: 420px; }
+      .wordmark-stage { min-height: 185px; overflow: hidden; }
+      .lockup-row { grid-template-columns: 1fr; align-items: start; }
+      .compact { justify-items: start; grid-template-columns: auto auto; align-items: center; }
+      .wordmark-text { font-size: 58px !important; letter-spacing: -4px !important; }
+      .lockup-word { font-size: 25px; }
+      .palette { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; } }
+  </style>
+</head>
+<body>
+  <a class="skip" href="#rutas">Saltar a las propuestas</a>
+  <header class="masthead" id="arriba">
+    <div class="navline">
+      <span class="project-name">Palabrando</span>
+      <span class="edition">Exploración tipográfica · 06 rutas</span>
+    </div>
+    <div class="hero">
+      <div>
+        <span class="eyebrow">Del apunte a la carta</span>
+        <h1>Las letras hacen sitio a las palabras.</h1>
+      </div>
+      <p class="hero-note">Seis propuestas construidas desde letras de “Palabrando”. Unas conservan la huella del papel y otras son planas; todas buscan calidez, fluidez y una lectura clara en pequeño.</p>
+    </div>
+    <nav class="index" aria-label="Índice de propuestas">
+      <a href="#solapa"><small>01 · P</small><strong>Solapa</strong></a>
+      <a href="#lazo"><small>02 · pa</small><strong>Lazo</strong></a>
+      <a href="#bisagra"><small>03 · bd</small><strong>Bisagra</strong></a>
+      <a href="#renglon"><small>04 · la</small><strong>Renglón</strong></a>
+      <a href="#nudo"><small>05 · br</small><strong>Nudo</strong></a>
+      <a href="#vuelta"><small>06 · do</small><strong>Vuelta</strong></a>
+    </nav>
+  </header>
+
+  <main id="rutas">
+    <!-- Shared drawing language: rounded strokes, no gradients, letterforms become product metaphors. -->
+    <section class="route solapa depth" id="solapa" aria-labelledby="title-solapa">
+      <div class="route-inner">
+        <div class="route-head">
+          <div class="symbol-stage" aria-hidden="true">
+            <svg viewBox="0 0 160 180">
+              <path d="M48 151V42c0-15 9-24 23-24h18c33 0 53 17 53 44 0 28-20 46-53 46H48" fill="none" stroke="currentColor" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M90 108c18 2 29 12 30 30-17 3-29-5-34-23" fill="var(--accent2)" stroke="currentColor" stroke-width="7" stroke-linejoin="round"/>
+              <path d="M54 153c12 10 28 10 41 0" fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div>
+            <span class="route-no">01 · letra P / hoja</span>
+            <h2 class="route-title" id="title-solapa">Solapa</h2>
+            <p class="route-kicker">Editorial · serena · con tacto</p>
+            <div class="concept">
+              <p>La “P” abre su panza como una página y deja asomar una solapa. El gesto une cuaderno y carta sin dibujar ninguno de forma literal.</p>
+              <p>Su pequeño relieve recuerda una cubierta prensada. La palabra se compone con una serif cálida, de lectura lenta y confiada.</p>
+            </div>
+          </div>
+        </div>
+        <div class="specimens">
+          <div class="specimen-main">
+            <span class="label">Wordmark y sistema</span>
+            <div class="wordmark-stage">
+              <svg class="wordmark" viewBox="0 0 720 150" role="img" aria-label="Palabrando, propuesta Solapa">
+                <text class="wordmark-text" x="8" y="106" fill="currentColor">Palabrando</text>
+                <path d="M198 98c18 10 36 9 54-6" fill="none" stroke="var(--accent2)" stroke-width="5" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <div class="lockup-row">
+              <div>
+                <span class="label">Lockup horizontal</span>
+                <div class="lockup" style="margin-top:16px">
+                  <svg class="mark" viewBox="0 0 160 180" aria-hidden="true"><path d="M48 151V42c0-15 9-24 23-24h18c33 0 53 17 53 44 0 28-20 46-53 46H48" fill="none" stroke="currentColor" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/><path d="M90 108c18 2 29 12 30 30-17 3-29-5-34-23" fill="var(--accent2)" stroke="currentColor" stroke-width="7" stroke-linejoin="round"/></svg>
+                  <span class="lockup-word">Palabrando</span>
+                </div>
+              </div>
+              <div class="compact"><span class="label">Compacta</span><span class="compact-box"><svg viewBox="0 0 160 180" aria-hidden="true"><path d="M48 151V42c0-15 9-24 23-24h18c33 0 53 17 53 44 0 28-20 46-53 46H48" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/><path d="M91 108c18 2 29 12 30 30-17 3-29-5-34-23" fill="var(--accent2)" stroke="currentColor" stroke-width="7" stroke-linejoin="round"/></svg></span></div>
+            </div>
+          </div>
+          <aside class="specimen-side" aria-label="Especificaciones de Solapa">
+            <div class="mini-panel"><span class="label">Paleta</span><div class="palette"><span class="swatch" style="background:#536450;color:#fff">#536450</span><span class="swatch" style="background:#c86f50;color:#fff">#C86F50</span><span class="swatch" style="background:#ebe9d9">#EBE9D9</span><span class="swatch" style="background:#273129;color:#fff">#273129</span></div></div>
+            <div class="mini-panel"><span class="label">Prueba real · 24 px</span><div class="small-test"><svg viewBox="0 0 160 180" aria-hidden="true"><path d="M48 151V42c0-15 9-24 23-24h18c33 0 53 17 53 44 0 28-20 46-53 46H48" fill="none" stroke="currentColor" stroke-width="18" stroke-linecap="round" stroke-linejoin="round"/><path d="M90 108c18 2 29 12 30 30" fill="none" stroke="var(--accent2)" stroke-width="11" stroke-linecap="round"/></svg><span class="small-name">Palabrando</span></div><p class="mini-copy">A 24 px se elimina la base curva: quedan la “P” y la hoja, con dos masas fáciles de reconocer.</p></div>
+            <div class="mini-panel"><span class="label">Una tinta</span><div class="mono-strip"><span class="mono-chip"><svg viewBox="0 0 160 180" aria-hidden="true"><path d="M48 151V42c0-15 9-24 23-24h18c33 0 53 17 53 44 0 28-20 46-53 46H48" fill="none" stroke="currentColor" stroke-width="17" stroke-linecap="round" stroke-linejoin="round"/><path d="M90 108c18 2 29 12 30 30" fill="none" stroke="currentColor" stroke-width="9" stroke-linecap="round"/></svg></span><span class="mono-chip invert"><svg viewBox="0 0 160 180" aria-hidden="true"><path d="M48 151V42c0-15 9-24 23-24h18c33 0 53 17 53 44 0 28-20 46-53 46H48" fill="none" stroke="currentColor" stroke-width="17" stroke-linecap="round" stroke-linejoin="round"/><path d="M90 108c18 2 29 12 30 30" fill="none" stroke="currentColor" stroke-width="9" stroke-linecap="round"/></svg></span></div></div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="route lazo" id="lazo" aria-labelledby="title-lazo">
+      <div class="route-inner">
+        <div class="route-head">
+          <div class="symbol-stage" aria-hidden="true">
+            <svg viewBox="0 0 190 170">
+              <path d="M32 146V61c0-25 13-42 32-42 20 0 32 14 32 34 0 24-16 39-42 39H34M95 105c4-21 17-34 35-34 21 0 33 16 30 38-3 24-17 38-36 36-18-2-27-16-25-33 3-20 17-31 34-31 16 0 28 10 28 27v27" fill="none" stroke="currentColor" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M161 135c7 9 14 11 22 4" fill="none" stroke="var(--accent2)" stroke-width="7" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div>
+            <span class="route-no">02 · ligadura pa</span>
+            <h2 class="route-title" id="title-lazo">Lazo</h2>
+            <p class="route-kicker">Cursiva · próxima · enteramente plana</p>
+            <div class="concept">
+              <p>La salida de la “p” cruza directamente hacia la “a”: una sola línea guarda y entrega la palabra. El símbolo se siente escrito, no ensamblado.</p>
+              <p>Es la ruta más humana y ligera. Funciona como firma sobre la cubierta del cuaderno y como gesto rápido en la esquina de cada carta.</p>
+            </div>
+          </div>
+        </div>
+        <div class="specimens">
+          <div class="specimen-main">
+            <span class="label">Wordmark y sistema</span>
+            <div class="wordmark-stage"><svg class="wordmark" viewBox="0 0 720 150" role="img" aria-label="Palabrando, propuesta Lazo"><text class="wordmark-text" x="6" y="105" fill="currentColor">Palabrando</text><path d="M50 118c94 22 213 21 320-1 58-12 112-12 161-2" fill="none" stroke="var(--accent2)" stroke-width="4" stroke-linecap="round"/></svg></div>
+            <div class="lockup-row">
+              <div><span class="label">Lockup horizontal</span><div class="lockup" style="margin-top:16px"><svg class="mark" viewBox="0 0 190 170" aria-hidden="true"><path d="M32 146V61c0-25 13-42 32-42 20 0 32 14 32 34 0 24-16 39-42 39H34M95 105c4-21 17-34 35-34 21 0 33 16 30 38-3 24-17 38-36 36-18-2-27-16-25-33 3-20 17-31 34-31 16 0 28 10 28 27v27" fill="none" stroke="currentColor" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="lockup-word">Palabrando</span></div></div>
+              <div class="compact"><span class="label">Compacta</span><span class="compact-box"><svg viewBox="0 0 190 170" aria-hidden="true"><path d="M32 146V61c0-25 13-42 32-42 20 0 32 14 32 34 0 24-16 39-42 39H34M95 105c4-21 17-34 35-34 21 0 33 16 30 38-3 24-17 38-36 36-18-2-27-16-25-33 3-20 17-31 34-31 16 0 28 10 28 27v27" fill="none" stroke="currentColor" stroke-width="13" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
+            </div>
+          </div>
+          <aside class="specimen-side" aria-label="Especificaciones de Lazo">
+            <div class="mini-panel"><span class="label">Paleta</span><div class="palette"><span class="swatch" style="background:#7a3e54;color:#fff">#7A3E54</span><span class="swatch" style="background:#e0a69a">#E0A69A</span><span class="swatch" style="background:#f3ded9">#F3DED9</span><span class="swatch" style="background:#4f2b38;color:#fff">#4F2B38</span></div></div>
+            <div class="mini-panel"><span class="label">Prueba real · 24 px</span><div class="small-test"><svg viewBox="0 0 190 170" aria-hidden="true"><path d="M34 148V58c0-25 13-39 31-39 20 0 31 14 31 34 0 24-16 39-42 39H35M96 108c4-23 18-36 36-36 20 0 32 15 29 37-3 23-17 37-36 35-18-2-27-16-24-34 3-19 17-29 33-29 15 0 27 10 27 27v27" fill="none" stroke="currentColor" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="small-name">Palabrando</span></div><p class="mini-copy">A 24 px conserva los dos ojos abiertos y el enlace central; se retira el remate coral.</p></div>
+            <div class="mini-panel"><span class="label">Una tinta</span><div class="mono-strip"><span class="mono-chip"><svg viewBox="0 0 190 170"><path d="M32 146V61c0-25 13-42 32-42 20 0 32 14 32 34 0 24-16 39-42 39H34M95 105c4-21 17-34 35-34 21 0 33 16 30 38-3 24-17 38-36 36-18-2-27-16-25-33 3-20 17-31 34-31 16 0 28 10 28 27v27" fill="none" stroke="currentColor" stroke-width="13" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="mono-chip invert"><svg viewBox="0 0 190 170"><path d="M32 146V61c0-25 13-42 32-42 20 0 32 14 32 34 0 24-16 39-42 39H34M95 105c4-21 17-34 35-34 21 0 33 16 30 38-3 24-17 38-36 36-18-2-27-16-25-33 3-20 17-31 34-31 16 0 28 10 28 27v27" fill="none" stroke="currentColor" stroke-width="13" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div></div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="route bisagra depth" id="bisagra" aria-labelledby="title-bisagra">
+      <div class="route-inner">
+        <div class="route-head">
+          <div class="symbol-stage" aria-hidden="true">
+            <svg viewBox="0 0 190 170">
+              <path d="M93 29v116" fill="none" stroke="currentColor" stroke-width="10" stroke-linecap="round"/>
+              <path d="M91 58C72 40 42 40 27 54v78c18-13 45-11 64 8M99 58c19-18 49-18 64-4v78c-18-13-45-11-64 8" fill="none" stroke="currentColor" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/>
+              <circle cx="59" cy="91" r="17" fill="var(--accent2)"/>
+              <circle cx="131" cy="91" r="17" fill="var(--accent2)"/>
+            </svg>
+          </div>
+          <div>
+            <span class="route-no">03 · ligadura bd / libro abierto</span>
+            <h2 class="route-title" id="title-bisagra">Bisagra</h2>
+            <p class="route-kicker">Geométrica · amable · volumen de imprenta</p>
+            <div class="concept">
+              <p>La “b” y la “d” se reflejan alrededor de un lomo común. Sus contraformas forman dos páginas: la captura a un lado y la carta al otro.</p>
+              <p>Es la opción más estructurada, suavizada con curvas amplias y un relieve corto de tinta. El mostaza aparece dentro de las letras, no como adorno.</p>
+            </div>
+          </div>
+        </div>
+        <div class="specimens">
+          <div class="specimen-main">
+            <span class="label">Wordmark y sistema</span>
+            <div class="wordmark-stage"><svg class="wordmark" viewBox="0 0 720 150" role="img" aria-label="Palabrando, propuesta Bisagra"><text class="wordmark-text" x="5" y="105" fill="currentColor">Palabrando</text><circle cx="177" cy="84" r="7" fill="var(--accent2)"/><circle cx="412" cy="84" r="7" fill="var(--accent2)"/></svg></div>
+            <div class="lockup-row">
+              <div><span class="label">Lockup horizontal</span><div class="lockup" style="margin-top:16px"><svg class="mark" viewBox="0 0 190 170" aria-hidden="true"><path d="M93 29v116M91 58C72 40 42 40 27 54v78c18-13 45-11 64 8M99 58c19-18 49-18 64-4v78c-18-13-45-11-64 8" fill="none" stroke="currentColor" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/><circle cx="59" cy="91" r="17" fill="var(--accent2)"/><circle cx="131" cy="91" r="17" fill="var(--accent2)"/></svg><span class="lockup-word">Palabrando</span></div></div>
+              <div class="compact"><span class="label">Compacta</span><span class="compact-box"><svg viewBox="0 0 190 170" aria-hidden="true"><path d="M93 29v116M91 58C72 40 42 40 27 54v78c18-13 45-11 64 8M99 58c19-18 49-18 64-4v78c-18-13-45-11-64 8" fill="none" stroke="currentColor" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/><circle cx="59" cy="91" r="17" fill="var(--accent2)"/><circle cx="131" cy="91" r="17" fill="var(--accent2)"/></svg></span></div>
+            </div>
+          </div>
+          <aside class="specimen-side" aria-label="Especificaciones de Bisagra">
+            <div class="mini-panel"><span class="label">Paleta</span><div class="palette"><span class="swatch" style="background:#1e5d64;color:#fff">#1E5D64</span><span class="swatch" style="background:#d8a644">#D8A644</span><span class="swatch" style="background:#e4eee9">#E4EEE9</span><span class="swatch" style="background:#173f43;color:#fff">#173F43</span></div></div>
+            <div class="mini-panel"><span class="label">Prueba real · 24 px</span><div class="small-test"><svg viewBox="0 0 190 170" aria-hidden="true"><path d="M94 28v118M90 58C70 40 42 41 27 54v77c18-12 44-10 63 8M100 58c20-18 48-17 63-4v77c-18-12-44-10-63 8" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="small-name">Palabrando</span></div><p class="mini-copy">A 24 px desaparecen los centros mostaza; el lomo y las dos páginas sostienen el reconocimiento.</p></div>
+            <div class="mini-panel"><span class="label">Una tinta</span><div class="mono-strip"><span class="mono-chip"><svg viewBox="0 0 190 170"><path d="M93 29v116M91 58C72 40 42 40 27 54v78c18-13 45-11 64 8M99 58c19-18 49-18 64-4v78c-18-13-45-11-64 8" fill="none" stroke="currentColor" stroke-width="13" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="mono-chip invert"><svg viewBox="0 0 190 170"><path d="M93 29v116M91 58C72 40 42 40 27 54v78c18-13 45-11 64 8M99 58c19-18 49-18 64-4v78c-18-13-45-11-64 8" fill="none" stroke="currentColor" stroke-width="13" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div></div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="route renglon" id="renglon" aria-labelledby="title-renglon">
+      <div class="route-inner">
+        <div class="route-head">
+          <div class="symbol-stage" aria-hidden="true">
+            <svg viewBox="0 0 190 170">
+              <path d="M51 24v97c0 20 10 28 26 28" fill="none" stroke="currentColor" stroke-width="12" stroke-linecap="round"/>
+              <path d="M83 108c2-24 16-38 36-38 23 0 36 18 32 42-3 24-18 38-38 35-18-3-28-17-25-35 3-20 17-31 35-31 17 0 29 11 29 29v35" fill="none" stroke="currentColor" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M24 148h144" fill="none" stroke="var(--accent2)" stroke-width="7" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div>
+            <span class="route-no">04 · ligadura la / margen y renglón</span>
+            <h2 class="route-title" id="title-renglon">Renglón</h2>
+            <p class="route-kicker">Literaria · firme · enteramente plana</p>
+            <div class="concept">
+              <p>La “l” marca el margen y enlaza con una “a” apoyada sobre el renglón. La marca nace de escribir dentro de un cuaderno, sin recurrir a un icono de libreta.</p>
+              <p>La línea verde puede extenderse para ordenar encabezados, pestañas o cartas. Es una ruta sobria, editorial y muy fácil de reproducir.</p>
+            </div>
+          </div>
+        </div>
+        <div class="specimens">
+          <div class="specimen-main">
+            <span class="label">Wordmark y sistema</span>
+            <div class="wordmark-stage"><svg class="wordmark" viewBox="0 0 720 150" role="img" aria-label="Palabrando, propuesta Renglón"><text class="wordmark-text" x="7" y="103" fill="currentColor">Palabrando</text><path d="M8 122h579" fill="none" stroke="var(--accent2)" stroke-width="5" stroke-linecap="round"/></svg></div>
+            <div class="lockup-row">
+              <div><span class="label">Lockup horizontal</span><div class="lockup" style="margin-top:16px"><svg class="mark" viewBox="0 0 190 170" aria-hidden="true"><path d="M51 24v97c0 20 10 28 26 28M83 108c2-24 16-38 36-38 23 0 36 18 32 42-3 24-18 38-38 35-18-3-28-17-25-35 3-20 17-31 35-31 17 0 29 11 29 29v35" fill="none" stroke="currentColor" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/><path d="M24 148h144" fill="none" stroke="var(--accent2)" stroke-width="7" stroke-linecap="round"/></svg><span class="lockup-word">Palabrando</span></div></div>
+              <div class="compact"><span class="label">Compacta</span><span class="compact-box"><svg viewBox="0 0 190 170" aria-hidden="true"><path d="M51 24v97c0 20 10 28 26 28M83 108c2-24 16-38 36-38 23 0 36 18 32 42-3 24-18 38-38 35-18-3-28-17-25-35 3-20 17-31 35-31 17 0 29 11 29 29v35" fill="none" stroke="currentColor" stroke-width="13" stroke-linecap="round" stroke-linejoin="round"/><path d="M24 148h144" fill="none" stroke="var(--accent2)" stroke-width="8" stroke-linecap="round"/></svg></span></div>
+            </div>
+          </div>
+          <aside class="specimen-side" aria-label="Especificaciones de Renglón">
+            <div class="mini-panel"><span class="label">Paleta</span><div class="palette"><span class="swatch" style="background:#9b4f38;color:#fff">#9B4F38</span><span class="swatch" style="background:#8aa191">#8AA191</span><span class="swatch" style="background:#efe2d1">#EFE2D1</span><span class="swatch" style="background:#5b3025;color:#fff">#5B3025</span></div></div>
+            <div class="mini-panel"><span class="label">Prueba real · 24 px</span><div class="small-test"><svg viewBox="0 0 190 170" aria-hidden="true"><path d="M51 24v96c0 20 10 28 26 28M84 108c3-23 16-37 35-37 22 0 35 17 32 40-3 23-17 37-37 35-18-2-28-16-25-34 3-19 17-30 34-30 16 0 28 11 28 28v34M25 149h143" fill="none" stroke="currentColor" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="small-name">Palabrando</span></div><p class="mini-copy">A 24 px margen y base se funden con la ligadura; el conjunto sigue leyendo “la” y no un pictograma genérico.</p></div>
+            <div class="mini-panel"><span class="label">Una tinta</span><div class="mono-strip"><span class="mono-chip"><svg viewBox="0 0 190 170"><path d="M51 24v97c0 20 10 28 26 28M83 108c2-24 16-38 36-38 23 0 36 18 32 42-3 24-18 38-38 35-18-3-28-17-25-35 3-20 17-31 35-31 17 0 29 11 29 29v35M24 148h144" fill="none" stroke="currentColor" stroke-width="13" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="mono-chip invert"><svg viewBox="0 0 190 170"><path d="M51 24v97c0 20 10 28 26 28M83 108c2-24 16-38 36-38 23 0 36 18 32 42-3 24-18 38-38 35-18-3-28-17-25-35 3-20 17-31 35-31 17 0 29 11 29 29v35M24 148h144" fill="none" stroke="currentColor" stroke-width="13" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div></div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="route nudo depth" id="nudo" aria-labelledby="title-nudo">
+      <div class="route-inner">
+        <div class="route-head">
+          <div class="symbol-stage" aria-hidden="true">
+            <svg viewBox="0 0 190 170">
+              <path d="M48 22v124M49 75c16-17 49-14 57 11 9 29-10 58-40 59H48M106 145V83c0-12 8-20 19-20 14 0 24 9 24 22M127 79c9-9 19-14 34-14" fill="none" stroke="currentColor" stroke-width="13" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M105 98c12-2 22 3 27 14" fill="none" stroke="var(--accent2)" stroke-width="8" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div>
+            <span class="route-no">05 · ligadura br / enlace</span>
+            <h2 class="route-title" id="title-nudo">Nudo</h2>
+            <p class="route-kicker">Robusta · envolvente · sello artesanal</p>
+            <div class="concept">
+              <p>La panza de la “b” entrega su curva al hombro de la “r”. El enlace hace visible cómo una palabra pequeña puede abrir una asociación mayor.</p>
+              <p>La marca se siente tallada y ligeramente elevada, como un sello sobre papel grueso. Su silueta ancha resiste muy bien en cubierta y en ficha vertical.</p>
+            </div>
+          </div>
+        </div>
+        <div class="specimens">
+          <div class="specimen-main">
+            <span class="label">Wordmark y sistema</span>
+            <div class="wordmark-stage"><svg class="wordmark" viewBox="0 0 720 150" role="img" aria-label="Palabrando, propuesta Nudo"><text class="wordmark-text" x="4" y="105" fill="currentColor">Palabrando</text><path d="M208 77c8-10 19-13 30-4" fill="none" stroke="var(--accent2)" stroke-width="7" stroke-linecap="round"/></svg></div>
+            <div class="lockup-row">
+              <div><span class="label">Lockup horizontal</span><div class="lockup" style="margin-top:16px"><svg class="mark" viewBox="0 0 190 170" aria-hidden="true"><path d="M48 22v124M49 75c16-17 49-14 57 11 9 29-10 58-40 59H48M106 145V83c0-12 8-20 19-20 14 0 24 9 24 22M127 79c9-9 19-14 34-14" fill="none" stroke="currentColor" stroke-width="13" stroke-linecap="round" stroke-linejoin="round"/><path d="M105 98c12-2 22 3 27 14" fill="none" stroke="var(--accent2)" stroke-width="8" stroke-linecap="round"/></svg><span class="lockup-word">Palabrando</span></div></div>
+              <div class="compact"><span class="label">Compacta</span><span class="compact-box"><svg viewBox="0 0 190 170" aria-hidden="true"><path d="M48 22v124M49 75c16-17 49-14 57 11 9 29-10 58-40 59H48M106 145V83c0-12 8-20 19-20 14 0 24 9 24 22M127 79c9-9 19-14 34-14" fill="none" stroke="currentColor" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/><path d="M105 98c12-2 22 3 27 14" fill="none" stroke="var(--accent2)" stroke-width="8" stroke-linecap="round"/></svg></span></div>
+            </div>
+          </div>
+          <aside class="specimen-side" aria-label="Especificaciones de Nudo">
+            <div class="mini-panel"><span class="label">Paleta</span><div class="palette"><span class="swatch" style="background:#5e4b76;color:#fff">#5E4B76</span><span class="swatch" style="background:#d28b66">#D28B66</span><span class="swatch" style="background:#e9e1ed">#E9E1ED</span><span class="swatch" style="background:#392f46;color:#fff">#392F46</span></div></div>
+            <div class="mini-panel"><span class="label">Prueba real · 24 px</span><div class="small-test"><svg viewBox="0 0 190 170" aria-hidden="true"><path d="M48 22v124M49 75c16-17 49-14 57 11 9 29-10 58-40 59H48M106 145V83c0-12 8-20 19-20 14 0 24 9 24 22M127 79c9-9 19-14 34-14" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="small-name">Palabrando</span></div><p class="mini-copy">A 24 px se suprime el nudo terracota y se abren los encuentros para que “br” no se cierre en una mancha.</p></div>
+            <div class="mini-panel"><span class="label">Una tinta</span><div class="mono-strip"><span class="mono-chip"><svg viewBox="0 0 190 170"><path d="M48 22v124M49 75c16-17 49-14 57 11 9 29-10 58-40 59H48M106 145V83c0-12 8-20 19-20 14 0 24 9 24 22M127 79c9-9 19-14 34-14" fill="none" stroke="currentColor" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="mono-chip invert"><svg viewBox="0 0 190 170"><path d="M48 22v124M49 75c16-17 49-14 57 11 9 29-10 58-40 59H48M106 145V83c0-12 8-20 19-20 14 0 24 9 24 22M127 79c9-9 19-14 34-14" fill="none" stroke="currentColor" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div></div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="route vuelta" id="vuelta" aria-labelledby="title-vuelta">
+      <div class="route-inner">
+        <div class="route-head">
+          <div class="symbol-stage" aria-hidden="true">
+            <svg viewBox="0 0 190 180">
+              <path d="M93 24v122M92 77c-14-17-43-18-57-2-17 19-13 53 8 67 19 13 42 5 50-14M101 112c0-25 16-42 39-42 24 0 40 18 40 43 0 25-16 42-40 42-23 0-39-18-39-43Z" fill="none" stroke="currentColor" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M91 77c12 12 18 28 18 49" fill="none" stroke="var(--accent2)" stroke-width="8" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div>
+            <span class="route-no">06 · ligadura do / giro de carta</span>
+            <h2 class="route-title" id="title-vuelta">Vuelta</h2>
+            <p class="route-kicker">Contemporánea · circular · casi plana</p>
+            <div class="concept">
+              <p>El asta de la “d” funciona como lomo; su curva continúa hasta la “o”, que se lee como una carta vista de frente. El ojo viaja de guardar a recuperar.</p>
+              <p>La construcción abierta y el trazo estable la hacen la opción más digital. Solo la pieza compacta recibe una sombra corta, como una carta levantada de la mesa.</p>
+            </div>
+          </div>
+        </div>
+        <div class="specimens">
+          <div class="specimen-main">
+            <span class="label">Wordmark y sistema</span>
+            <div class="wordmark-stage"><svg class="wordmark" viewBox="0 0 720 150" role="img" aria-label="Palabrando, propuesta Vuelta"><text class="wordmark-text" x="6" y="103" fill="currentColor">Palabrando</text><path d="M485 105c19 11 42 10 60-3" fill="none" stroke="var(--accent2)" stroke-width="6" stroke-linecap="round"/></svg></div>
+            <div class="lockup-row">
+              <div><span class="label">Lockup horizontal</span><div class="lockup" style="margin-top:16px"><svg class="mark" viewBox="0 0 190 180" aria-hidden="true"><path d="M93 24v122M92 77c-14-17-43-18-57-2-17 19-13 53 8 67 19 13 42 5 50-14M101 112c0-25 16-42 39-42 24 0 40 18 40 43 0 25-16 42-40 42-23 0-39-18-39-43Z" fill="none" stroke="currentColor" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/><path d="M91 77c12 12 18 28 18 49" fill="none" stroke="var(--accent2)" stroke-width="8" stroke-linecap="round"/></svg><span class="lockup-word">Palabrando</span></div></div>
+              <div class="compact"><span class="label">Compacta</span><span class="compact-box"><svg viewBox="0 0 190 180" aria-hidden="true"><path d="M93 24v122M92 77c-14-17-43-18-57-2-17 19-13 53 8 67 19 13 42 5 50-14M101 112c0-25 16-42 39-42 24 0 40 18 40 43 0 25-16 42-40 42-23 0-39-18-39-43Z" fill="none" stroke="currentColor" stroke-width="13" stroke-linecap="round" stroke-linejoin="round"/><path d="M91 77c12 12 18 28 18 49" fill="none" stroke="var(--accent2)" stroke-width="8" stroke-linecap="round"/></svg></span></div>
+            </div>
+          </div>
+          <aside class="specimen-side" aria-label="Especificaciones de Vuelta">
+            <div class="mini-panel"><span class="label">Paleta</span><div class="palette"><span class="swatch" style="background:#2f5266;color:#fff">#2F5266</span><span class="swatch" style="background:#c06b46;color:#fff">#C06B46</span><span class="swatch" style="background:#e8e7df">#E8E7DF</span><span class="swatch" style="background:#273b46;color:#fff">#273B46</span></div></div>
+            <div class="mini-panel"><span class="label">Prueba real · 24 px</span><div class="small-test"><svg viewBox="0 0 190 180" aria-hidden="true"><path d="M93 24v122M92 77c-14-17-43-18-57-2-17 19-13 53 8 67 19 13 42 5 50-14M102 112c0-25 15-42 38-42 24 0 40 18 40 43 0 25-16 42-40 42-23 0-38-18-38-43Z" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="small-name">Palabrando</span></div><p class="mini-copy">A 24 px el puente naranja se integra en el trazo principal; “do” mantiene dos contraformas abiertas.</p></div>
+            <div class="mini-panel"><span class="label">Una tinta</span><div class="mono-strip"><span class="mono-chip"><svg viewBox="0 0 190 180"><path d="M93 24v122M92 77c-14-17-43-18-57-2-17 19-13 53 8 67 19 13 42 5 50-14M101 112c0-25 16-42 39-42 24 0 40 18 40 43 0 25-16 42-40 42-23 0-39-18-39-43Z" fill="none" stroke="currentColor" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="mono-chip invert"><svg viewBox="0 0 190 180"><path d="M93 24v122M92 77c-14-17-43-18-57-2-17 19-13 53 8 67 19 13 42 5 50-14M101 112c0-25 16-42 39-42 24 0 40 18 40 43 0 25-16 42-40 42-23 0-39-18-39-43Z" fill="none" stroke="currentColor" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div></div>
+          </aside>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="closing">
+    <span class="eyebrow">Selección abierta</span>
+    <h2>Seis maneras de hacer que una palabra se convierta en objeto.</h2>
+    <p>Solapa, Bisagra y Nudo exploran una profundidad artesanal; Lazo y Renglón permiten comparar una identidad completamente plana; Vuelta ocupa el punto medio. La galería propone territorios para elegir y refinar, sin declarar una solución ganadora.</p>
+    <a class="back-top" href="#arriba">Volver al índice ↑</a>
+  </footer>
+</body>
+</html>

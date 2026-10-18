@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="light" />
+  <title>Palabrando · Comillas en órbita</title>
+  <style>
+    :root{--ink:#332e2a;--muted:#706760;--line:#ddd8d2;--paper:#fbf0e9;--primary:#b56750;--accent:#d49b86;--shade:#8c4939;font-family:Arial,Helvetica,sans-serif;color:var(--ink);background:#f7f6f2;font-synthesis:none;text-rendering:optimizeLegibility}
+    *{box-sizing:border-box}body{margin:0}h1,h2,p{margin:0}button{font:inherit;color:inherit;cursor:pointer}button:focus-visible,a:focus-visible{outline:3px solid var(--ink);outline-offset:3px}a{color:inherit;text-underline-offset:3px}.wrap{width:min(1100px,calc(100% - 48px));margin:auto}.mast{display:flex;justify-content:space-between;gap:20px;padding:27px 0 18px;border-bottom:1px solid var(--line);font-size:11px}.mast span:last-child{color:var(--muted)}.intro{display:flex;justify-content:space-between;align-items:end;gap:40px;padding:40px 0 30px}.eyebrow{margin-bottom:10px;color:var(--muted);font-size:10px;letter-spacing:.14em;text-transform:uppercase}.intro h1{font:400 clamp(34px,5vw,56px)/1.05 Georgia,serif;letter-spacing:-.05em}.intro p{max-width:43ch;color:var(--muted);font-size:13px;line-height:1.75}.palette-tabs{display:flex;gap:7px;flex-wrap:wrap;padding:0 0 19px}.palette-tabs button{display:flex;align-items:center;gap:8px;min-height:40px;padding:8px 12px;border:1px solid var(--line);background:#fffdfb;font-size:11px}.palette-tabs button[aria-pressed=true]{border-color:var(--ink);background:var(--paper);outline:1px solid var(--ink);outline-offset:-2px}.dot{width:11px;height:11px;border-radius:50%;background:var(--swatch)}.palette-detail{display:flex;gap:8px 20px;flex-wrap:wrap;padding:0 0 20px;color:var(--muted);font-size:10px}.palette-detail b{color:var(--ink);font-weight:500}.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}.card{min-width:0;border:1px solid var(--line);background:#fffdfb}.card h2{padding:18px 18px 5px;font:400 22px Georgia,serif}.card .hint{min-height:44px;padding:0 18px;color:var(--muted);font-size:11px;line-height:1.55}.stage{display:flex;align-items:center;justify-content:center;height:270px;margin:14px;background:var(--paper);border:1px solid #0000000a}.symbol{width:min(100%,230px);height:230px;display:block}.left{fill:var(--primary)}.right{fill:var(--accent)}.mono{--primary:var(--ink);--accent:var(--ink)}.sample-row{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:15px 18px;border-top:1px solid var(--line);font-size:10px;color:var(--muted)}.tiny{width:48px;height:48px;display:grid;place-items:center;background:var(--paper);border:1px solid var(--line)}.tiny svg{width:38px;height:38px}.note{margin:24px 0 30px;padding:17px 19px;border-left:2px solid var(--primary);background:#fffdfb;color:var(--muted);font-size:12px;line-height:1.7}.note strong{color:var(--ink);font-weight:600}.footer{display:flex;justify-content:space-between;gap:20px;padding:16px 0 28px;border-top:1px solid var(--line);font-size:10px;line-height:1.6;color:var(--muted)}
+    @media(max-width:800px){.wrap{width:calc(100% - 36px)}.intro{display:block}.intro p{margin-top:16px;max-width:58ch}.grid{grid-template-columns:1fr}.card{display:grid;grid-template-columns:minmax(0,1fr) minmax(200px,260px);grid-template-rows:auto auto 1fr}.card h2,.card .hint{grid-column:1}.card .hint{min-height:auto;padding-bottom:12px}.stage{grid-column:2;grid-row:1/4;height:auto;min-height:220px;margin:12px}.symbol{width:100%;height:auto;max-height:225px}.sample-row{grid-column:1}.tiny{flex:none}}
+    @media(max-width:520px){.wrap{width:calc(100% - 28px)}.mast{font-size:10px}.intro{padding:32px 0 24px}.intro p{font-size:12px}.palette-tabs button{flex:1;justify-content:center;padding:7px 8px}.card{display:block}.card .hint{min-height:0}.stage{height:245px;min-height:0;margin:12px}.symbol{height:220px;width:220px}.footer{display:block}.footer span{display:block}.footer span+span{margin-top:7px}}
+    @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
+  </style>
+</head>
+<body>
+  <svg width="0" height="0" aria-hidden="true" style="position:absolute;overflow:hidden">
+    <defs>
+      <!-- Formas originales del concepto «Comillas» en sol-61.html. -->
+      <symbol id="quote-open" viewBox="0 0 100 100">
+        <path d="M27 22C15 22 11 32 13 43C14 53 20 60 32 68C35 70 38 67 36 64C32 58 31 53 31 49C43 48 47 42 46 34C45 26 38 21 27 22Z"/>
+      </symbol>
+      <symbol id="quote-close" viewBox="0 0 100 100">
+        <path d="M69 30C58 29 53 36 54 45C54 53 58 58 69 59C69 65 66 70 62 76C60 79 63 82 66 80C80 71 87 60 87 48C87 37 81 31 69 30Z"/>
+      </symbol>
+      <!-- Reflejo de arriba abajo; ambas piezas giran antes de acercarse. -->
+      <symbol id="orbit-open" viewBox="0 0 100 100">
+        <use href="#quote-open" width="100" height="100" transform="rotate(-30 29.5 45)"/>
+      </symbol>
+      <symbol id="orbit-close" viewBox="0 0 100 100">
+        <g transform="rotate(-30 70 55.5)">
+          <g transform="translate(0 111) scale(1 -1)">
+            <use href="#quote-close" width="100" height="100"/>
+          </g>
+        </g>
+      </symbol>
+      <symbol id="pair-tight" viewBox="0 0 100 100">
+        <g transform="rotate(45 50 50)">
+          <g transform="translate(8.5 10)"><use href="#orbit-open" class="left" width="100" height="100"/></g>
+          <g transform="translate(-8 -10.5)"><use href="#orbit-close" class="right" width="100" height="100"/></g>
+        </g>
+      </symbol>
+      <symbol id="pair-balanced" viewBox="0 0 100 100">
+        <g transform="rotate(45 50 50)">
+          <g transform="translate(7.5 10)"><use href="#orbit-open" class="left" width="100" height="100"/></g>
+          <g transform="translate(-7 -10.5)"><use href="#orbit-close" class="right" width="100" height="100"/></g>
+        </g>
+      </symbol>
+      <symbol id="pair-open" viewBox="0 0 100 100">
+        <g transform="rotate(45 50 50)">
+          <g transform="translate(6.5 10)"><use href="#orbit-open" class="left" width="100" height="100"/></g>
+          <g transform="translate(-6 -10.5)"><use href="#orbit-close" class="right" width="100" height="100"/></g>
+        </g>
+      </symbol>
+    </defs>
+  </svg>
+  <div class="wrap">
+    <header class="mast"><a href="hebra-comillas.html">Palabrando / Identidad</a><span>Exploración nueva · Comillas en órbita</span></header>
+    <section class="intro"><div><p class="eyebrow">Dos signos · un gesto</p><h1>Dos comillas,<br>en equilibrio.</h1></div><p>Dos comillas que se rodean: las cabezas ocupan extremos opuestos y las colas siguen el giro del conjunto. Más cerca, con un pequeño hueco entre ambas.</p></section>
+    <main>
+      <div class="palette-tabs" role="group" aria-label="Familia de color">
+        <button type="button" data-palette="terracota" aria-pressed="true"><i class="dot" style="--swatch:#b56750"></i>Terracota + arcilla</button>
+        <button type="button" data-palette="ocre" aria-pressed="false"><i class="dot" style="--swatch:#9c6d20"></i>Ocre + papel miel</button>
+        <button type="button" data-palette="agua" aria-pressed="false"><i class="dot" style="--swatch:#27879d"></i>Agua + papel claro</button>
+        <button type="button" data-palette="ciruela" aria-pressed="false"><i class="dot" style="--swatch:#75435f"></i>Ciruela + malva</button>
+      </div>
+      <div class="palette-detail" id="palette-detail" aria-live="polite"></div>
+      <section class="grid" aria-label="Tres separaciones del mismo símbolo">
+        <article class="card"><h2>01 · Cercanas</h2><p class="hint">El ajuste más cerrado, con una línea de aire entre ambas.</p><div class="stage"><svg class="symbol" viewBox="0 0 100 100" role="img" aria-label="Dos comillas espejadas, cercanas y separadas"><use href="#pair-tight"/></svg></div><div class="sample-row"><span>Compacta · una tinta</span><span class="tiny"><svg viewBox="0 0 100 100" aria-hidden="true"><use href="#pair-tight" class="mono"/></svg></span></div></article>
+        <article class="card"><h2>02 · Equilibradas</h2><p class="hint">Un poco más de aire dentro de la misma silueta circular.</p><div class="stage"><svg class="symbol" viewBox="0 0 100 100" role="img" aria-label="Dos comillas espejadas con separación equilibrada"><use href="#pair-balanced"/></svg></div><div class="sample-row"><span>Compacta · una tinta</span><span class="tiny"><svg viewBox="0 0 100 100" aria-hidden="true"><use href="#pair-balanced" class="mono"/></svg></span></div></article>
+        <article class="card"><h2>03 · Con aire</h2><p class="hint">La separación más amplia de los tres ajustes compactos.</p><div class="stage"><svg class="symbol" viewBox="0 0 100 100" role="img" aria-label="Dos comillas espejadas con un hueco más amplio"><use href="#pair-open"/></svg></div><div class="sample-row"><span>Compacta · una tinta</span><span class="tiny"><svg viewBox="0 0 100 100" aria-hidden="true"><use href="#pair-open" class="mono"/></svg></span></div></article>
+      </section>
+      <p class="note"><strong>Color de dos tonos:</strong> cada comilla usa los dos tonos de una paleta aprobada. Se mantiene el contraste por forma y color; la versión compacta usa una sola tinta. No se recuperan los verdes de la propuesta original, que quedaron descartados.</p>
+    </main>
+    <footer class="footer"><span>Las geometrías de ambas comillas se copian de la propuesta original.</span><span><a href="hebra-comillas.html">Ver P entre comillas con Hebra</a> · Valores completos en <a href="../PALETAS.md">PALETAS.md</a></span></footer>
+  </div>
+  <script>
+    const palettes={
+      terracota:{name:'Terracota + arcilla',primary:'#B56750',accent:'#D49B86',shade:'#8C4939',paper:'#FBF0E9',ink:'#51372F'},
+      ocre:{name:'Ocre + papel miel',primary:'#9C6D20',accent:'#D4AA5F',shade:'#79501A',paper:'#FFF3D6',ink:'#4E3B25'},
+      agua:{name:'Agua + papel claro',primary:'#27879D',accent:'#82C7D5',shade:'#1F687B',paper:'#EEF9FB',ink:'#28434B'},
+      ciruela:{name:'Ciruela + malva',primary:'#75435F',accent:'#C8A6BD',shade:'#573145',paper:'#F8F0F5',ink:'#482A3D'}
+    };
+    function selectPalette(key){
+      const p=palettes[key];
+      document.documentElement.style.setProperty('--primary',p.primary);
+      document.documentElement.style.setProperty('--accent',p.accent);
+      document.documentElement.style.setProperty('--paper',p.paper);
+      document.documentElement.style.setProperty('--shade',p.shade);
+      document.documentElement.style.setProperty('--ink',p.ink);
+      document.getElementById('palette-detail').innerHTML=`<span><b>Comilla 1</b> ${p.primary}</span><span><b>Comilla 2</b> ${p.accent}</span><span><b>Fondo</b> ${p.paper}</span><span><b>Tinta</b> ${p.ink}</span>`;
+      document.querySelectorAll('[data-palette]').forEach(button=>button.setAttribute('aria-pressed',String(button.dataset.palette===key)));
+    }
+    document.querySelectorAll('[data-palette]').forEach(button=>button.addEventListener('click',()=>selectPalette(button.dataset.palette)));
+    selectPalette('terracota');
+  </script>
+</body>
+</html>

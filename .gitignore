@@ -3,6 +3,8 @@ dist/
 coverage/
 .env*
 !.env.example
+*.pem
+*.key
 .DS_Store
 *.log
 npm-debug.log*

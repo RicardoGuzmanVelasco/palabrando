@@ -18,8 +18,17 @@ La experiencia es **mobile-first**. Escritorio es una adaptación secundaria.
 - Práctica: cartas verticales/baraja. Los dados ilustrados y el juego narrativo pueden aparecer en los concepts.
 - Completar cartas con IA es una función central del producto, con revisión y aceptación campo a campo.
 - Una carta tiene palabra, idioma, uso/matiz, ejemplo, etiquetas morfológicas y autor que la añadió.
+- Logo aprobado: las dos comillas en yin-yang abierto, separación 02 Equilibradas, parametrizado en `design/logos/logo-comillas.svg` con dos colores. La propuesta anterior de P con Hebra se conserva como exploración.
+- El SVG del logo usa por defecto gris carbón `#343434` y gris medio `#777777`; sus dos colores son parametrizables.
+- Copy de interfaz: usar solo texto estrictamente necesario para cubrir los requisitos de acción, estado y recuperación. No inventar slogans ni frases de ambientación; evitar copy redundante. Si una cadena imprescindible es dudosa, preguntar al usuario antes de decidirla. Esta regla también está en `AGENTS.md`.
+- El mismo logo aparecerá en los cuatro elementos asociados a las cuatro paletas, usando en cada uno los dos tonos de su familia cromática.
+- La identidad usará cuatro familias cromáticas: terracota + arcilla, ocre + papel miel, agua + papel claro y ciruela + malva. Sus valores completos se conservan en `design/PALETAS.md`.
+- El tema de color de una carta se deriva de su primera etiqueta morfológica según orden de asignación. Tres familias se repartirán entre etiquetas principales; la familia agua + papel claro queda reservada para el cuaderno de captura. La tabla exacta de etiquetas y las otras tres familias se asignarán al cerrar el catálogo.
+- Acceso inicial: enlace por correo. El alta pide idioma de interfaz (español o inglés); el perfil y las palabras viven en Supabase cuando hay sesión autenticada.
+- Home y superficies genéricas se construyen con estas cuatro familias, sus papeles claros y sus tintas legibles. No se incorporan familias verdes, pizarra o sepia.
 - No se guarda un estado manual de completitud: se calcula por los campos presentes.
 - El idioma de la interfaz y los idiomas en que el usuario quiere mejorar su escritura son ajustes separados.
+- Se pidió sustituir la handwritten del cuaderno por Indie Flower (Google Fonts); pendiente verificar cobertura de caracteres/licencia e incorporarla después del trabajo actual.
 - Al crear una cuenta se elige idioma de interfaz: español o inglés.
 - El reto conserva el último idioma elegido; en una cuenta nueva se inicia con el idioma de interfaz. Se puede cambiar antes de consultar cartas y esa selección filtra la baraja por idioma.
 - Los retos serán un placeholder sencillo en el POC. No cerraremos aún reglas de selección, dados ni gamificación.
@@ -95,7 +104,7 @@ No añadir contexto de captura.
 
 ### Etiquetas morfológicas
 
-Catálogo con códigos estables y nombres traducibles, más relación muchos-a-muchos con cartas. Una carta admite más de una etiqueta.
+Catálogo con códigos estables y nombres traducibles, más relación muchos-a-muchos con cartas. Una carta admite más de una etiqueta. La relación conserva el orden en que se asignaron las etiquetas (`assigned_order` o equivalente) para que la primera etiqueta determine el tema de color de forma estable.
 
 ### `challenges` — mínimo
 
@@ -126,7 +135,15 @@ Calcularlo desde los datos; no mantener un estado manual que pueda contradecirlo
 
 Antes de implementar, verificar la documentación y el changelog vigentes de Supabase (Auth, RLS, Data API, Edge Functions). Antes de desplegar, verificar configuración vigente de Render Static Sites, rutas SPA, variables y dominio.
 
-## 7. Secuencia de implementación
+## 7. Estado de los hitos
+
+- **Fase 0 — base local:** skeleton Vite/React/TypeScript, README, `.gitignore`, primera confirmación local y dependencias instaladas. Falta crear/enlazar el remoto de GitHub.
+- **Fase 1 — primera pasada:** nombre, logo equilibrado, cuatro paletas y SVG paramétrico aprobados. La primera pantalla móvil usa provisionalmente la estructura editorial de Patio con colores aprobados. El catálogo de etiquetas y su relación con paletas sigue pendiente.
+- **Captura inicial:** permite anotar y consultar palabras recientes; con sesión autenticada las guarda en Supabase y, sin configuración, conserva el respaldo local del navegador.
+- **Fase 2 — Supabase y cuenta:** proyecto remoto `palabrando` creado en `eu-central-1`; migraciones de perfil, cartas, catálogo de etiquetas y retos aplicadas; `.env.local` apunta al proyecto y está ignorado por Git. RLS está activado en las siete tablas y el asesor de seguridad no reporta avisos. Pendiente configurar/verificar el retorno de enlaces de acceso y comprobar aislamiento entre dos cuentas.
+- **Fase 3 — captura y glosario (en curso):** captura y lectura persistentes, cartas verticales y edición/borrado de uso y ejemplo implementados. Pendientes catálogo y asignación de etiquetas, estados pendiente/lista y configurar idiomas de escritura/preselección.
+
+## 8. Secuencia de implementación
 
 ### Fase 0 — Git y skeleton
 
@@ -139,9 +156,11 @@ Antes de implementar, verificar la documentación y el changelog vigentes de Sup
 ### Fase 1 — Dirección de arte
 
 1. Encargar tres concepts con el brief al final de este documento.
-2. Comparar las mismas escenas móviles y elegir una dirección.
-3. Fijar tipografía, paleta, espaciado, cartas, botones, iconos y movimiento.
-4. Escritorio adapta el sistema decidido en móvil.
+2. Aplicar el SVG parametrizable del logo aprobado en las cuatro familias cromáticas y preparar la versión compacta a una tinta.
+3. Comparar las mismas escenas móviles y elegir una dirección.
+4. Conservar las cuatro paletas de `design/PALETAS.md`; decidir qué tres se asignan a las etiquetas morfológicas y cuál queda para el cuaderno.
+5. Fijar tipografía, espaciado, cartas, botones, iconos y movimiento.
+6. Escritorio adapta el sistema decidido en móvil.
 
 ### Fase 2 — Supabase y cuenta
 
@@ -185,7 +204,7 @@ Antes de implementar, verificar la documentación y el changelog vigentes de Sup
 
 No añadir tests automáticos en el POC. Dejar anotada una lista de comprobaciones manuales realizadas.
 
-## 8. Criterios de aceptación
+## 9. Criterios de aceptación
 
 - Guardar una palabra en móvil lleva pocos segundos y no exige completar la carta.
 - Las cartas persisten en Supabase.
@@ -198,11 +217,11 @@ No añadir tests automáticos en el POC. Dejar anotada una lista de comprobacion
 - La web funciona en móvil y está publicada en Render.
 - La identidad visual expresa el cuaderno de bolsillo y la baraja de escritura sin sacrificar legibilidad.
 
-## 9. Fuera del POC
+## 10. Fuera del POC
 
 Editor de textos; automatización de captura mientras se lee; dados funcionales; retos con múltiples cartas; gamificación con puntos/rachas; integración MCP; pruebas automáticas.
 
-## 10. Brief listo para el agente de dirección de arte
+## 11. Brief listo para el agente de dirección de arte
 
 > Eres director/a de arte y diseñador/a de producto digital. Crea conceptos visuales para Palabrando, una aplicación para recoger palabras interesantes y volver a ellas para incorporarlas a la escritura cotidiana.
 >
