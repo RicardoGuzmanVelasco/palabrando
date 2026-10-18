@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg"
+     viewBox="0 0 100 100"
+     role="img"
+     aria-labelledby="logo-title logo-description"
+     style="--logo-left:#9C6D20;--logo-right:#D4AA5F">
+  <title id="logo-title">Palabrando</title>
+  <desc id="logo-description">Dos comillas enfrentadas en una composición circular abierta.</desc>
+  <g transform="rotate(45 50 50)">
+    <g transform="translate(7.5 10)">
+      <g transform="rotate(-30 29.5 45)">
+        <path fill="var(--logo-left, #9C6D20)"
+              d="M27 22C15 22 11 32 13 43C14 53 20 60 32 68C35 70 38 67 36 64C32 58 31 53 31 49C43 48 47 42 46 34C45 26 38 21 27 22Z"/>
+      </g>
+    </g>
+    <g transform="translate(-7 -10.5)">
+      <g transform="rotate(-30 70 55.5)">
+        <g transform="translate(0 111) scale(1 -1)">
+          <path fill="var(--logo-right, #D4AA5F)"
+                d="M69 30C58 29 53 36 54 45C54 53 58 58 69 59C69 65 66 70 62 76C60 79 63 82 66 80C80 71 87 60 87 48C87 37 81 31 69 30Z"/>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>
