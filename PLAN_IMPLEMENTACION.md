@@ -137,11 +137,12 @@ Antes de implementar, verificar la documentación y el changelog vigentes de Sup
 
 ## 7. Estado de los hitos
 
-- **Fase 0 — base local:** skeleton Vite/React/TypeScript, README, `.gitignore`, primera confirmación local y dependencias instaladas. Falta crear/enlazar el remoto de GitHub.
+- **Fase 0 — base y remoto:** skeleton Vite/React/TypeScript, README, `.gitignore`, dependencias instaladas y commit inicial. Repositorio público `RicardoGuzmanVelasco/palabrando`, rama `main`.
 - **Fase 1 — primera pasada:** nombre, logo equilibrado, cuatro paletas y SVG paramétrico aprobados. La primera pantalla móvil usa provisionalmente la estructura editorial de Patio con colores aprobados. El catálogo de etiquetas y su relación con paletas sigue pendiente.
 - **Captura inicial:** permite anotar y consultar palabras recientes; con sesión autenticada las guarda en Supabase y, sin configuración, conserva el respaldo local del navegador.
-- **Fase 2 — Supabase y cuenta:** proyecto remoto `palabrando` creado en `eu-central-1`; migraciones de perfil, cartas, catálogo de etiquetas y retos aplicadas; `.env.local` apunta al proyecto y está ignorado por Git. RLS está activado en las siete tablas y el asesor de seguridad no reporta avisos. Pendiente configurar/verificar el retorno de enlaces de acceso y comprobar aislamiento entre dos cuentas.
+- **Fase 2 — Supabase y cuenta:** proyecto remoto `palabrando` creado en `eu-central-1`; migraciones de perfil, cartas, catálogo de etiquetas y retos aplicadas; `.env.local` apunta al proyecto y está ignorado por Git. RLS está activado en las siete tablas y el asesor de seguridad no reporta avisos. El dominio de producción está en Redirect URLs. Pendiente confirmar Site URL predeterminado y comprobar aislamiento entre dos cuentas.
 - **Fase 3 — captura y glosario (en curso):** captura y lectura persistentes, cartas verticales y edición/borrado de uso y ejemplo implementados. Pendientes catálogo y asignación de etiquetas, estados pendiente/lista y configurar idiomas de escritura/preselección.
+- **Fase 6 — publicación (en curso):** primera versión publicada en Render Static Site: `https://palabrando-t3rt.onrender.com`. Compilación de producción correcta; pendiente verificar Auth con el Site URL definitivo y cerrar la verificación manual.
 
 ## 8. Secuencia de implementación
 
